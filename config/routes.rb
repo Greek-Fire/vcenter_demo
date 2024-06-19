@@ -11,5 +11,5 @@ ForemanVcenterDemo::Engine.routes.draw do
 end
 
 Foreman::Application.routes.draw do
-  mount ForemanVcenterDemo::Engine, at: '/vcenter_demo'
+  mount ForemanVcenterDemo::Engine, at: '/foreman_vcenter_demo'
 end
