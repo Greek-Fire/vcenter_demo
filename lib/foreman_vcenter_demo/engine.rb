@@ -24,9 +24,8 @@ module ForemanVcenterDemo
         register_global_js_file 'global'
 
         # Add permissions
-        security_block :foreman_vcenter_demo do
-          permission :view_foreman_vcenter_demo, { :'foreman_vcenter_demo/example' => [:new_action],
-                                                      :'react' => [:index] }
+        security_block :agent_monitoring do
+          permission :view_agent_monitoring, { :'foreman_vcenter_demo/vcenters' => %i[index auto_complete_search] }
         end
 
         # Add a new role called 'Discovery' if it doesn't exist
