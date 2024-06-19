@@ -1,4 +1,4 @@
 require 'foreman_vcenter_demo/engine'
 
-module ForemanPluginTemplate
+module ForemanVcenterDemo
 end

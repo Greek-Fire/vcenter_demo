@@ -1,0 +1,19 @@
+<table class="<%= table_css_classes %>">
+  <thead>
+    <tr>
+      <th><%= sort :name,  :as => s_('Name') %></th>
+      <th><%= sort :fqdn,   :as => s_('FQDN') %></th>
+      <th><%= sort :enclave,   :as => s_('Enclave') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @vcenters.each do |vcenter| %>
+      <tr>
+        <td><%= vcenter.name %></td>
+        <td><%= vcenter.fqdn %></td>
+        <td><%= vcenter.enclave %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate_with_info @vcenters %>

@@ -1,7 +1,13 @@
-ForemanPluginTemplate::Engine.routes.draw do
-  get 'new_action', to: 'example#new_action', as: 'new_action'
-  get 'plugin_template_description', to: 'example#react_template_page_description'
-  get 'welcome', to: '/react#index', as: 'welcome'
+ForemanVcenterDemo::Engine.routes.draw do
+  resources :vcenters do
+    get :auto_complete_search, on: :collection
+  end
+
+  namespace :api do
+    namespace :v2 do
+      resources :vcenters
+    end
+  end
 end
 
 Foreman::Application.routes.draw do

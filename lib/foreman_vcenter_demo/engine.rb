@@ -1,16 +1,16 @@
-module ForemanPluginTemplate
+module ForemanVcenterDemo
   class Engine < ::Rails::Engine
-    isolate_namespace ForemanPluginTemplate
+    isolate_namespace ForemanVcenterDemo
     engine_name 'foreman_vcenter_demo'
 
     config.autoload_paths += Dir["#{config.root}/app/controllers/concerns"]
     config.autoload_paths += Dir["#{config.root}/app/helpers/concerns"]
     config.autoload_paths += Dir["#{config.root}/app/models/concerns"]
-    config.autoload_paths += Dir["#{config.root}/app/overrides"]
+    #config.autoload_paths += Dir["#{config.root}/app/overrides"]
 
     # Add any db migrations
     initializer 'foreman_vcenter_demo.load_app_instance_data' do |app|
-      ForemanPluginTemplate::Engine.paths['db/migrate'].existent.each do |path|
+      ForemanVcenterDemo::Engine.paths['db/migrate'].existent.each do |path|
         app.config.paths['db/migrate'] << path
       end
     end
@@ -30,12 +30,11 @@ module ForemanPluginTemplate
         end
 
         # Add a new role called 'Discovery' if it doesn't exist
-        role 'ForemanPluginTemplate', [:view_foreman_vcenter_demo]
+        role 'ForemanVcenterDemo', [:view_foreman_vcenter_demo]
 
         # add menu entry
-        sub_menu :top_menu, :plugin_template, icon: 'pficon pficon-enterprise', caption: N_('Plugin Template'), after: :hosts_menu do
-          menu :top_menu, :welcome, caption: N_('Welcome Page'), engine: ForemanPluginTemplate::Engine
-          menu :top_menu, :new_action, caption: N_('New Action'), engine: ForemanPluginTemplate::Engine
+        sub_menu :top_menu, :hallas_automation, caption: N_('Hallas Automation'), icon: 'pficon pficon-enterprise', after: :hosts_menu do
+          menu :top_menu, :agents, caption: N_('Vcenters'), url_hash: { controller: 'venters', action: 'index' }, engine: ForemanVcenterDemo::Engine  
         end
 
         # add dashboard widget
@@ -47,16 +46,16 @@ module ForemanPluginTemplate
     config.to_prepare do
 
       begin
-        Host::Managed.send(:include, ForemanPluginTemplate::HostExtensions)
-        HostsHelper.send(:include, ForemanPluginTemplate::HostsHelperExtensions)
+        Host::Managed.send(:include, ForemanVcenterDemo::HostExtensions)
+        HostsHelper.send(:include, ForemanVcenterDemo::HostsHelperExtensions)
       rescue => e
-        Rails.logger.warn "ForemanPluginTemplate: skipping engine hook (#{e})"
+        Rails.logger.warn "ForemanVcenterDemo: skipping engine hook (#{e})"
       end
     end
 
     rake_tasks do
       Rake::Task['db:seed'].enhance do
-        ForemanPluginTemplate::Engine.load_seed
+        ForemanVcenterDemo::Engine.load_seed
       end
     end
   end

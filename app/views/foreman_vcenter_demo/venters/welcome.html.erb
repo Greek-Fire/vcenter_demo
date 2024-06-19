@@ -1,0 +1,9 @@
+<% content_for(:title, _("Vcenters")) %>
+<% description = _("Add a Vcenter.") %>
+<% action = { :title => _("Add Vcenter"), :url => new_host_path } if authorized_for(:action => :new)%>
+<%= react_component('EmptyState', {
+                                    :icon => 'globe',
+                                    :iconType => 'fa',
+                                    :header => _('Agent'),
+                                    :description => description,
+                                  }) %>
