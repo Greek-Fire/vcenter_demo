@@ -15,7 +15,7 @@ module ForemanVcenterDemo
       end
     end
 
-    initializer 'foreman_vcenter_demo.register_plugin', :before => :finisher_hook do |_app|
+    initializer 'foreman_vcenter_demo.register_plugin', before: :finisher_hook do |_app|
       Foreman::Plugin.register :foreman_vcenter_demo do
         requires_foreman '>= 3.7.0'
         register_gettext
@@ -24,20 +24,20 @@ module ForemanVcenterDemo
         register_global_js_file 'global'
 
         # Add permissions
-        security_block :agent_monitoring do
-          permission :view_agent_monitoring, { :'foreman_vcenter_demo/vcenters' => %i[index auto_complete_search] }
+        security_block :foreman_vcenter_demo do
+          permission :view_foreman_vcenter_demo, { 'foreman_vcenter_demo/vcenters' => [:index, :auto_complete_search] }
         end
 
         # Add a new role called 'Discovery' if it doesn't exist
         role 'ForemanVcenterDemo', [:view_foreman_vcenter_demo]
 
-        # add menu entry
-        sub_menu :top_menu, :hallas_automation_vc, caption: N_('Hallas Automation'), icon: 'pficon pficon-enterprise', after: :hosts_menu do
-          menu :top_menu, :vcenter, caption: N_('Vcenters'), url_hash: { controller: 'vcenters', action: 'index' }, engine: ForemanVcenterDemo::Engine  
+        # Add menu entry
+        menu :top_menu, :hallas_automation_vc, caption: N_('Hallas Automation'), icon: 'pficon pficon-enterprise', after: :hosts_menu do
+          menu :top_menu, :vcenter, caption: N_('Vcenters'), url_hash: { controller: 'foreman_vcenter_demo/vcenters', action: 'index' }, engine: ForemanVcenterDemo::Engine
         end
 
-        # add dashboard widget
-        #widget 'foreman_vcenter_demo_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
+        # Add dashboard widget (if needed)
+        # widget 'foreman_vcenter_demo_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
       end
     end
 
