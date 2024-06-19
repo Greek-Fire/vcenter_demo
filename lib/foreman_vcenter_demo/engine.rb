@@ -31,8 +31,8 @@ module ForemanVcenterDemo
         role 'ForemanVcenterDemo', [:view_foreman_vcenter_demo]
 
         # Add menu entry
-        menu :top_menu, :hallas_automation, caption: N_('Hallas Automation'), icon: 'pficon pficon-enterprise', after: :hosts_menu do
-          menu :top_menu, :vcenter, caption: N_('Vcenters'), url_hash: { controller: 'foreman_vcenter_demo/vcenters', action: 'index' }, engine: ForemanVcenterDemo::Engine
+        menu :top_menu, :hallas_automation_vc, caption: N_('Hallas Automation'), icon: 'pficon pficon-enterprise', after: :hosts_menu do
+          menu :top_menu, :vcenter, caption: N_('Vcenters'),  url_hash: { :controller => :vcenters, :action => :index } engine: ForemanVcenterDemo::Engine
         end
 
         # Add dashboard widget (if needed)
