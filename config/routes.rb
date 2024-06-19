@@ -10,6 +10,6 @@ ForemanVcenterDemo::Engine.routes.draw do
   end
 end
 
-Foreman::Application.routes.draw do
-  mount ForemanVcenterDemo::Engine, at: '/vcenter_demo'
-end
+#Foreman::Application.routes.draw do
+#  mount ForemanVcenterDemo::Engine, at: '/vcenter_demo'
+#end
