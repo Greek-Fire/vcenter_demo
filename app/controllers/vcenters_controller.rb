@@ -6,11 +6,12 @@ module ForemanVcenterDemo
         @vcenters = resource_base_search_and_page
       end
       def new
-        @vcenters = Vcener.new
+        @vcenter = Vcenter.new
       end
+  
       def create
-        @vcenters = Vcenter.new(vcenter_params)
-        if @vcenters.save
+        @vcenter = Vcenter.new(vcenter_params)
+        if @vcenter.save
           redirect_to vcenters_path, notice: 'Vcenter was successfully created.'
         else
           render :new
