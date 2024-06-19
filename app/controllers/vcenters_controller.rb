@@ -8,6 +8,19 @@ module ForemanVcenterDemo
       def new
         @vcenters = Vcener.new
       end
+      def create
+        @vcenter = Vcenter.new(vcenter_params)
+        if @vcenter.save
+          redirect_to vcenters_path, notice: 'Vcenter was successfully created.'
+        else
+          render :new
+        end
+      end
+  
+      private
+  
+      def vcenter_params
+        params.require(:vcenter).permit(:name, :fqdn, :enclave)
+      end
     end
   end
-  
