@@ -6,7 +6,7 @@ module ForemanVcenterDemo
     config.autoload_paths += Dir["#{config.root}/app/controllers/concerns"]
     config.autoload_paths += Dir["#{config.root}/app/helpers/concerns"]
     config.autoload_paths += Dir["#{config.root}/app/models/concerns"]
-    #config.autoload_paths += Dir["#{config.root}/app/overrides"]
+    config.autoload_paths += Dir["#{config.root}/app/overrides"]
 
     # Add any db migrations
     initializer 'foreman_vcenter_demo.load_app_instance_data' do |app|
