@@ -38,18 +38,7 @@ module ForemanVcenterDemo
         end
 
         # add dashboard widget
-        widget 'foreman_vcenter_demo_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
-      end
-    end
-
-    # Include concerns in this config.to_prepare block
-    config.to_prepare do
-
-      begin
-        #Host::Managed.send(:include, ForemanVcenterDemo::HostExtensions)
-        #HostsHelper.send(:include, ForemanVcenterDemo::HostsHelperExtensions)
-      rescue => e
-        Rails.logger.warn "ForemanVcenterDemo: skipping engine hook (#{e})"
+        #widget 'foreman_vcenter_demo_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
       end
     end
 
