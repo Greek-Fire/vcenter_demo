@@ -9,8 +9,8 @@ module ForemanVcenterDemo
         @vcenters = Vcener.new
       end
       def create
-        @vcenter = Vcenter.new(vcenter_params)
-        if @vcenter.save
+        @vcenters = Vcenter.new(vcenter_params)
+        if @vcenters.save
           redirect_to vcenters_path, notice: 'Vcenter was successfully created.'
         else
           render :new
