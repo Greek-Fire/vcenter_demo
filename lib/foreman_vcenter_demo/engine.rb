@@ -47,7 +47,7 @@ module ForemanVcenterDemo
 
       begin
         #Host::Managed.send(:include, ForemanVcenterDemo::HostExtensions)
-        HostsHelper.send(:include, ForemanVcenterDemo::HostsHelperExtensions)
+        #HostsHelper.send(:include, ForemanVcenterDemo::HostsHelperExtensions)
       rescue => e
         Rails.logger.warn "ForemanVcenterDemo: skipping engine hook (#{e})"
       end
