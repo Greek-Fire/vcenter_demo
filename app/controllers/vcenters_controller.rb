@@ -18,6 +18,19 @@ module ForemanVcenterDemo
         end
       end
   
+      def edit
+        @vcenter = Vcenter.find(params[:id])
+      end
+  
+      def update
+        @vcenter = Vcenter.find(params[:id])
+        if @vcenter.update(vcenter_params)
+          redirect_to vcenters_path, notice: 'Vcenter was successfully updated.'
+        else
+          render :edit
+        end
+      end
+  
       private
   
       def vcenter_params
