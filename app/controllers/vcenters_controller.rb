@@ -1,6 +1,6 @@
 module ForemanVcenterDemo
   class VcentersController < ApplicationController
-      include Foreman::Controller::Parameters::Vcenter
+      #include Foreman::Controller::Parameters::Vcenter
       include Foreman::Controller::AutoCompleteSearch
       
       def index
