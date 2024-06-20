@@ -1,4 +1,4 @@
-module Foreman::Controller::Parameters::BuildReport
+module Foreman::Controller::Parameters::Vcenter
     extend ActiveSupport::Concern
   
     class_methods do
