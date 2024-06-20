@@ -40,6 +40,7 @@ module ForemanVcenterDemo
           menu :top_menu, :agents, caption: N_('Vcenters'), url_hash: { controller: 'foreman_vcenter_demo/vcenters', action: 'index' }, engine: ForemanVcenterDemo::Engine
         end
       end
+    end
 
         # Add dashboard widget (if needed)
         # widget 'foreman_vcenter_demo_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
