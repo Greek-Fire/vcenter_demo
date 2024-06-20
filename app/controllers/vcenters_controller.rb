@@ -6,7 +6,7 @@ module ForemanVcenterDemo
     before_action :find_vcenter, only: [:edit, :update, :destroy, :show]
 
     def index
-      @vcenters = Vcenter.fetch(vcenter_params)
+      @vcenters = Vcenter.fetch(params)
     end
 
     def new
