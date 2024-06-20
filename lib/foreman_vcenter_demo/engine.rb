@@ -19,10 +19,8 @@ module ForemanVcenterDemo
         requires_foreman '>= 3.7.0'
         register_gettext
 
-        # Add Global files for extending foreman-core components and routes
         register_global_js_file 'global'
 
-        # Add permissions
         security_block :foreman_vcenter_demo do
           permission :view_vcenters,         { :'foreman_vcenter_demo/vcenters' => %i[index auto_complete_search]}
           permission :edit_vcenters,         { :'foreman_vcenter_demo/vcenters' => %i[edit update]}
@@ -30,20 +28,14 @@ module ForemanVcenterDemo
           permission :destroy_vcenters,      { :'foreman_vcenter_demo/vcenters' => [:destroy]}
         end
 
-        # Add a new role called 'Discovery' if it doesn't exist
         role 'ForemanVcenterDemo', [:view_foreman_vcenter_demo]
 
-        # Add menu entry
         sub_menu :top_menu, :hallas_automation, caption: N_('Hallas Automation'), icon: 'pficon pficon-enterprise', after: :hosts_menu do
           menu :top_menu, :agents, caption: N_('Vcenters'), url_hash: { controller: 'foreman_vcenter_demo/vcenters', action: 'index' }, engine: ForemanVcenterDemo::Engine
         end
       end
     end
 
-    # Add dashboard widget (if needed)
-    # widget 'foreman_vcenter_demo_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
-
-    # Include concerns in this config.to_prepare block
     config.to_prepare do
       begin
         Host::Managed.send(:include, Vcenter::HostExtensions)
