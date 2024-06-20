@@ -1,6 +1,6 @@
 class Vcenter < ApplicationRecord
   include Authorizable
-  include Taxonomix
+  #include Taxonomix
 
   validates :name, :fqdn, :enclave, presence: true
   scoped_search on: :name, complete_value: true
