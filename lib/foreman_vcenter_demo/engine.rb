@@ -3,8 +3,10 @@ module ForemanVcenterDemo
     isolate_namespace ForemanVcenterDemo
     engine_name 'foreman_vcenter_demo'
 
-    config.autoload_paths += Dir["#{config.root}/app"]
-    config.autoload_paths += Dir["#{config.root}/lib"]
+    config.autoload_paths += Dir["#{config.root}/app/controllers/concerns"]
+    config.autoload_paths += Dir["#{config.root}/app/helpers/concerns"]
+    config.autoload_paths += Dir["#{config.root}/app/models/concerns"]
+    config.autoload_paths += Dir["#{config.root}/app/overrides"]
 
     initializer 'foreman_vcenter_demo.load_app_instance_data' do |app|
       ForemanVcenterDemo::Engine.paths['db/migrate'].existent.each do |path|
@@ -18,18 +20,15 @@ module ForemanVcenterDemo
         register_gettext
 
         # Add Global files for extending foreman-core components and routes
-        #register_global_js_file 'global'
+        register_global_js_file 'global'
 
         # Add permissions
         security_block :foreman_vcenter_demo do
-          permission :view_vcenters, { :vcenters => %i[index auto_complete_search]},
-                     :resource_type => 'Vcenter'
-          permission :edit_vcenters, { :vcenters => %i[edit update]},
-                     :resource_type => 'Vcenter'
-          permission :create_vcenters, { :vcenter => %i[new create]},
-                     :resource_type => 'Vcenter'
-          permission :destroy_vcenters_, { :vcenters => [:destroy]},
-                     :resource_type => 'Vcenter'
+          permission :view_agent_monitoring, { :'agent_monitoring/agents'       => %i[index auto_complete_search] }
+          permission :view_vcenters,         { :'foreman_vcenter_demo/vcenters' => %i[index auto_complete_search]}
+          permission :edit_vcenters,         { :'foreman_vcenter_demo/vcenters' => %i[edit update]}
+          permission :create_vcenters,       { :'foreman_vcenter_demo/vcenters' => %i[new create]}
+          permission :destroy_vcenters,      { :'foreman_vcenter_demo/vcenters' => [:destroy]}
         end
 
         # Add a new role called 'Discovery' if it doesn't exist
