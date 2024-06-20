@@ -1,18 +1,30 @@
-<table class="<%= table_css_classes %>">
-  <thead>
-    <tr>
-      <th><%= sort :name,  :as => s_('Name') %></th>
-      <th><%= sort :fqdn,   :as => s_('FQDN') %></th>
-      <th><%= sort :enclave,   :as => s_('Enclave') %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @vcenters.each do |vcenter| %>
+<% if @vcenters.any? %>
+  <table class="<%= table_css_classes %>">
+    <thead>
       <tr>
-        <td><%= vcenter.name %></td>
-        <td><%= vcenter.fqdn %></td>
-        <td><%= vcenter.enclave %></td>
+        <th><%= sort :name,  as: _('Name') %></th>
+        <th><%= sort :fqdn,  as: _('FQDN') %></th>
+        <th><%= sort :enclave,  as: _('Enclave') %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @vcenters.each do |vcenter| %>
+        <tr>
+          <td><%= vcenter.name %></td>
+          <td><%= vcenter.fqdn %></td>
+          <td><%= vcenter.enclave %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <% description = _("Add a Vcenter.") %>
+  <% action = { title: _("Add Vcenter"), url: new_vcenter_path } if authorized_for(action: :new) %>
+  <%= react_component('EmptyState', {
+                        icon: 'globe',
+                        iconType: 'fa',
+                        header: _('Vcenters'),
+                        description: description,
+                        action: action
+                      }) %>
+<% end %>
