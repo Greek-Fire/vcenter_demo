@@ -1,5 +1,5 @@
 # app/models/vcenter/host_extensions.rb
-module Vcenter
+module ForemanVcenterDemo
     module HostExtensions
       extend ActiveSupport::Concern
   
