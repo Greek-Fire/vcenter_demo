@@ -6,7 +6,7 @@ module ForemanVcenterDemo
     before_action :find_vcenter, only: [:edit, :update, :destroy, :show]
 
     def index
-      @vcenters = Vcenter.fetch(params)
+      @vcenters = Vcenter.fetch(vcenter_params)
     end
 
     def new
@@ -44,11 +44,8 @@ module ForemanVcenterDemo
     private
 
     def find_vcenter
-      @vcenter = Vcenter.find(params[:id])
+      @vcenter = Vcenter.find(vcenter_params[:id])
     end
 
-    def vcenter_params
-      params.require(:vcenter).permit(:name, :fqdn, :enclave)
-    end
   end
 end

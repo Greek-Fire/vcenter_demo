@@ -1,5 +1,7 @@
 module Foreman::Controller::Parameters::Vcenter
     extend ActiveSupport::Concern
+    include Foreman::Controller::Parameters::Parameter
+    #include Foreman::Controller::Parameters::Taxonomix
   
     class_methods do
       def vcenter_params_filter
