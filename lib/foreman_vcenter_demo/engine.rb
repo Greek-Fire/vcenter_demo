@@ -42,12 +42,20 @@ module ForemanVcenterDemo
 
         # Add dashboard widget (if needed)
         # widget 'foreman_vcenter_demo_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
+    # Include concerns in this config.to_prepare block
+    config.to_prepare do
+
+      begin
+        Host::Managed.send(:include, Vcenter::HostExtensions)
+        HostsHelper.send(:include, Vcenter::HostsHelperExtensions)
+      rescue => e
+        Rails.logger.warn "Vcenter: skipping engine hook (#{e})"
       end
     end
 
     rake_tasks do
       Rake::Task['db:seed'].enhance do
-        ForemanVcenterDemo::Engine.load_seed
+        AgentMonitoring::Engine.load_seed
       end
     end
   end
