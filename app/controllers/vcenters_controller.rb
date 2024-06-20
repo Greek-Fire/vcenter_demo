@@ -4,7 +4,7 @@ module ForemanVcenterDemo
       include Foreman::Controller::AutoCompleteSearch
       
       def index
-        @vcenters = resource_base_search_and_page.search_for(params[:search])
+        @vcenters = resource_base_search_and_page
       end
 
       def new
@@ -28,9 +28,6 @@ module ForemanVcenterDemo
           process_error
         end
       end
-
-      def edit; end
-      def show; end
     
       def destroy
         if @vcenter.destroy
@@ -39,10 +36,8 @@ module ForemanVcenterDemo
           process_error
         end
       end
-    private
 
-    def vcenter_params
-      params.require(:vcenter).permit(:name, :fqdn, :enclave)
-    end
+      def edit; end
+      def show; end
   end
 end
