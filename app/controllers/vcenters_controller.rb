@@ -1,6 +1,6 @@
 module ForemanVcenterDemo
   class VcentersController < ApplicationController
-      #include Foreman::Controller::Parameters::Vcenter
+      include Foreman::Controller::Parameters::Vcenter
       include Foreman::Controller::AutoCompleteSearch
       
       def index
@@ -29,8 +29,7 @@ module ForemanVcenterDemo
         end
       end
 
-      def edit
-      end
+      def edit; end
     
       def destroy
         if @vcenter.destroy
