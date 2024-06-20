@@ -3,10 +3,7 @@ module ForemanVcenterDemo
     isolate_namespace ForemanVcenterDemo
     engine_name 'foreman_vcenter_demo'
 
-    config.autoload_paths += Dir["#{config.root}/app/controllers/concerns"]
-    config.autoload_paths += Dir["#{config.root}/app/helpers/concerns"]
-    config.autoload_paths += Dir["#{config.root}/app/models/concerns"]
-    config.autoload_paths += Dir["#{config.root}/app/overrides"]
+    config.autoload_paths += Dir["#{config.root}/app"]
 
     initializer 'foreman_vcenter_demo.load_app_instance_data' do |app|
       ForemanVcenterDemo::Engine.paths['db/migrate'].existent.each do |path|
@@ -20,7 +17,7 @@ module ForemanVcenterDemo
         register_gettext
 
         # Add Global files for extending foreman-core components and routes
-        register_global_js_file 'global'
+        #register_global_js_file 'global'
 
         # Add permissions
         security_block :foreman_vcenter_demo do
