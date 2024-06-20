@@ -22,10 +22,10 @@ module ForemanVcenterDemo
         register_global_js_file 'global'
 
         security_block :foreman_vcenter_demo do
-          permission :view_vcenters,         { :'foreman_vcenter_demo/vcenters' => %i[index auto_complete_search]}
-          permission :edit_vcenters,         { :'foreman_vcenter_demo/vcenters' => %i[edit update]}
-          permission :create_vcenters,       { :'foreman_vcenter_demo/vcenters' => %i[new create]}
-          permission :delete_vcenters,      { :'foreman_vcenter_demo/vcenters' => [:destroy]}
+          permission :view_vcenters,        { :'foreman_vcenter_demo/vcenters' => %i[index auto_complete_search]}
+          permission :edit_vcenters,        { :'foreman_vcenter_demo/vcenters' => %i[edit update]}
+          permission :create_vcenters,      { :'foreman_vcenter_demo/vcenters' => %i[new create]}
+          permission :destroy_vcenters,     { :vcenters => [:destroy]}, resource_type => 'Vcenters'
         end
 
         role 'ForemanVcenterDemo', [:view_foreman_vcenter_demo]
