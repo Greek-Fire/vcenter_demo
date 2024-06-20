@@ -2,6 +2,8 @@ module ForemanVcenterDemo
   class VcentersController < ApplicationController
       include Foreman::Controller::Parameters::Vcenter
       include Foreman::Controller::AutoCompleteSearch
+
+      before_action :find_vcenter, only: [:edit, :update, :destroy, :show]
       
       def index
         @vcenters = resource_base_search_and_page
@@ -40,15 +42,5 @@ module ForemanVcenterDemo
       def edit; end
       def show; end
 
-
-    private
-
-    def controller_permission
-      'vcenters'
-    end
-
-    def resource_base
-      Vcenter.authorized(controller_permission, Vcenter)
-    end
   end
 end
