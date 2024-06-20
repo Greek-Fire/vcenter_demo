@@ -1,6 +1,8 @@
 ForemanVcenterDemo::Engine.routes.draw do
   resources :vcenters do
-    get :auto_complete_search, on: :collection
+    collection do
+      get :auto_complete_search
+    end
   end
 
   namespace :api do
