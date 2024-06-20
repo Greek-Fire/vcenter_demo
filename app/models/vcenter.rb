@@ -9,12 +9,9 @@ class Vcenter < ApplicationRecord
   
   def self.fetch(params)
     list = self
-      .with_counts
       .search_for(params[:search])
       .order(params[:order])
       .paginate(page: params[:page], per_page: params[:per_page])
     list
   end
-  
 end
-  
