@@ -30,6 +30,7 @@ module ForemanVcenterDemo
       end
 
       def edit; end
+      def show; end
     
       def destroy
         if @vcenter.destroy
