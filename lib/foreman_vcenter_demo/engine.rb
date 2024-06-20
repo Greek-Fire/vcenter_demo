@@ -25,13 +25,13 @@ module ForemanVcenterDemo
         # Add permissions
         security_block :foreman_vcenter_demo do
           permission :view_vcenters, { :vcenters => %i[index auto_complete_search]},
-                     :resource_type => 'BuildReport'
+                     :resource_type => 'Vcenter'
           permission :edit_vcenters, { :vcenters => %i[edit update]},
-                     :resource_type => 'BuildReport'
-          permission :create_vcenters, { :BuildReport => %i[new create]},
-                     :resource_type => 'BuildReport'
+                     :resource_type => 'Vcenter'
+          permission :create_vcenters, { :vcenter => %i[new create]},
+                     :resource_type => 'Vcenter'
           permission :destroy_vcenters_, { :vcenters => [:destroy]},
-                     :resource_type => 'BuildReport'
+                     :resource_type => 'Vcenter'
         end
 
         # Add a new role called 'Discovery' if it doesn't exist
