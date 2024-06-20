@@ -24,7 +24,6 @@ module ForemanVcenterDemo
 
         # Add permissions
         security_block :foreman_vcenter_demo do
-          permission :view_agent_monitoring, { :'agent_monitoring/agents'       => %i[index auto_complete_search] }
           permission :view_vcenters,         { :'foreman_vcenter_demo/vcenters' => %i[index auto_complete_search]}
           permission :edit_vcenters,         { :'foreman_vcenter_demo/vcenters' => %i[edit update]}
           permission :create_vcenters,       { :'foreman_vcenter_demo/vcenters' => %i[new create]}
@@ -35,18 +34,17 @@ module ForemanVcenterDemo
         role 'ForemanVcenterDemo', [:view_foreman_vcenter_demo]
 
         # Add menu entry
-
         sub_menu :top_menu, :hallas_automation, caption: N_('Hallas Automation'), icon: 'pficon pficon-enterprise', after: :hosts_menu do
           menu :top_menu, :agents, caption: N_('Vcenters'), url_hash: { controller: 'foreman_vcenter_demo/vcenters', action: 'index' }, engine: ForemanVcenterDemo::Engine
         end
       end
     end
 
-        # Add dashboard widget (if needed)
-        # widget 'foreman_vcenter_demo_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
+    # Add dashboard widget (if needed)
+    # widget 'foreman_vcenter_demo_widget', name: N_('Foreman plugin template widget'), sizex: 4, sizey: 1
+
     # Include concerns in this config.to_prepare block
     config.to_prepare do
-
       begin
         Host::Managed.send(:include, Vcenter::HostExtensions)
         HostsHelper.send(:include, Vcenter::HostsHelperExtensions)
@@ -57,7 +55,7 @@ module ForemanVcenterDemo
 
     rake_tasks do
       Rake::Task['db:seed'].enhance do
-        AgentMonitoring::Engine.load_seed
+        ForemanVcenterDemo::Engine.load_seed
       end
     end
   end
