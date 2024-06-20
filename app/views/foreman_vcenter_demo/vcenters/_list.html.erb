@@ -17,8 +17,7 @@
           display_link_if_authorized(_("Edit"),   hash_for_edit_vcenter_path(:id => vcenter.id)),
           display_link_if_authorized(_("Delete"), hash_for_vcenter_path(vcenter), 
                                        :method => :delete, 
-                                       :data => { :confirm => _("Delete Vcenter %s?") % vcenter.name }, 
-                                       :class => "btn btn-danger")
+                                       :data => { :confirm => _("Delete Vcenter %s?") % vcenter.name }
         ) %>
         </td>
       </tr>
