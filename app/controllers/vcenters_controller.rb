@@ -14,7 +14,7 @@ module ForemanVcenterDemo
     end
 
     def create
-      @vcenter = Vcenter.new(params)
+      @vcenter = Vcenter.new(vcenter_params)
       if @vcenter.save
         process_success
       else
@@ -23,7 +23,7 @@ module ForemanVcenterDemo
     end
 
     def update
-      if @vcenter.update(params)
+      if @vcenter.update(vcenter_params)
         process_success
       else
         process_error
@@ -45,6 +45,10 @@ module ForemanVcenterDemo
 
     def find_vcenter
       @vcenter = Vcenter.find(params[:id])
+    end
+
+    def vcenter_params
+      params.require(:vcenter).permit(:name, :fqdn, :enclave, location_ids: [], organization_ids: [])
     end
   end
 end
