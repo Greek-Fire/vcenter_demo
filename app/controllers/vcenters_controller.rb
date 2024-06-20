@@ -4,7 +4,7 @@ module ForemanVcenterDemo
       include Foreman::Controller::AutoCompleteSearch
       
       def index
-        @vcenters = resource_base_search_and_page
+        @vcenters = resource_base_search_and_page.search_for(params[:search])
       end
 
       def new
