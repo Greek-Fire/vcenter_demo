@@ -39,5 +39,10 @@ module ForemanVcenterDemo
           process_error
         end
       end
+    private
+
+    def vcenter_params
+      params.require(:vcenter).permit(:name, :fqdn, :enclave)
+    end
   end
 end
