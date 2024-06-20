@@ -6,9 +6,9 @@ module ForemanVcenterDemo
       before_action :find_vcenter, only: [:edit, :update, :destroy, :show]
       
       def index
-        @vcenters = resource_base_search_and_page
+        @vcenters = Vcenter.fetch(params)
       end
-
+      
       def new
         @vcenter = Vcenter.new
       end
@@ -41,6 +41,12 @@ module ForemanVcenterDemo
 
       def edit; end
       def show; end
+
+      private
+
+      def find_vcenter
+        @vcenter = Vcenter.find(params[:id])
+      end
 
   end
 end
