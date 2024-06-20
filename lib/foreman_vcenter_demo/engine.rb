@@ -25,7 +25,7 @@ module ForemanVcenterDemo
           permission :view_vcenters,        { :'foreman_vcenter_demo/vcenters' => %i[index auto_complete_search]}
           permission :edit_vcenters,        { :'foreman_vcenter_demo/vcenters' => %i[edit update]}
           permission :create_vcenters,      { :'foreman_vcenter_demo/vcenters' => %i[new create]}
-          permission :destroy_vcenters,     { :vcenters => [:destroy]}, resource_type => 'Vcenters'
+          permission :destroy_vcenters,     { :vcenters => [:destroy]}, :resource_type => 'Vcenters'
         end
 
         role 'ForemanVcenterDemo', [:view_foreman_vcenter_demo]
