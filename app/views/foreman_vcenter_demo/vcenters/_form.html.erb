@@ -1,5 +1,5 @@
 <%= form_for @vcenter, :url => (@vcenter.id? ? build_report_path(:id => @vcenter.id) : vcenter_path) do |f| %>
-    <%= base_errors_for @build_report %>
+    <%= base_errors_for @vcenter %>
   
     <ul class="nav nav-tabs" data-tabs="tabs">
       <li class="active"><a href="#primary" data-toggle="tab"><%= _("Vcenter Details") %></a></li>
@@ -18,7 +18,7 @@
         <%= text_f(f, :enclave) %>
         <!-- Add other fields related to the Automation Report here -->
       </div>
-      <%= render 'taxonomies/loc_org_tabs', :f => f, :obj => @build_report %>
+      <%= render 'taxonomies/loc_org_tabs', :f => f, :obj => @vcenter %>
       <%= submit_or_cancel f %>
     </div>
   <% end %>
