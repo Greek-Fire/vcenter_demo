@@ -1,2 +1,2 @@
-<% title _("Ghange Vcenter") %>
-<%= render :partial => 'form' %>
+<% title (@vcenter.new_record? ? _("Add Vcenter") : _("Edit Vcenter")) %>
+<%= render 'form' %>

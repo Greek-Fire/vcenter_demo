@@ -36,15 +36,6 @@ module ForemanVcenterDemo
       end
     end
 
-    config.to_prepare do
-      begin
-        Host::Managed.send(:include, Vcenter::HostExtensions)
-        HostsHelper.send(:include, Vcenter::HostsHelperExtensions)
-      rescue => e
-        Rails.logger.warn "Vcenter: skipping engine hook (#{e})"
-      end
-    end
-
     rake_tasks do
       Rake::Task['db:seed'].enhance do
         ForemanVcenterDemo::Engine.load_seed
