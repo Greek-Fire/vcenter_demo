@@ -11,15 +11,28 @@ module ForemanVcenterDemo
       end
 
       def update
-        if @build_report.update(build_report_params)
+        if @vcenter.update(vcenter_params)
           process_success
         else
           process_error
         end
       end
+
+      def create
+        @vcenter = Vcenter.new(vcenter_params)
+    
+        if @vcenter.save
+          process_success
+        else
+          process_error
+        end
+      end
+
+      def edit
+      end
     
       def destroy
-        if @build_report.destroy
+        if @vcenter.destroy
           process_success
         else
           process_error
