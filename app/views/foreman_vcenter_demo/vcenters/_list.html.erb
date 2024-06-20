@@ -1,9 +1,10 @@
 <table class="<%= table_css_classes %>">
   <thead>
     <tr>
-      <th><%= sort :name,  :as => s_('Name') %></th>
-      <th><%= sort :fqdn,   :as => s_('FQDN') %></th>
-      <th><%= sort :enclave,   :as => s_('Enclave') %></th>
+      <th><%= sort :name,    :as => s_('Name') %></th>
+      <th><%= sort :fqdn,    :as => s_('FQDN') %></th>
+      <th><%= sort :enclave, :as => s_('Enclave') %></th>
+      <th><%= _("Actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -11,8 +12,14 @@
       <tr>
         <td><%= vcenter.name %></td>
         <td><%= vcenter.fqdn %></td>
-        <td><%= vcenter.enclave %></td>
+        <td><%= vcenter.enclave %></td> 
+        <td><%= action_buttons(
+          display_link_if_authorized(_("Edit"), hash_for_edit_vcenter_path(:id => vcenter.id)),
+          display_delete_if_authorized(hash_for_vcenter_path(:id => vcenter.id), :data => {:confirm => _("Delete Vcenter %s?") % vcenter.name})
+        ) %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
