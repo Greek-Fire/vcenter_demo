@@ -4,6 +4,7 @@ module ForemanVcenterDemo
     engine_name 'foreman_vcenter_demo'
 
     config.autoload_paths += Dir["#{config.root}/app"]
+    config.autoload_paths += Dir["#{config.root}/lib"]
 
     initializer 'foreman_vcenter_demo.load_app_instance_data' do |app|
       ForemanVcenterDemo::Engine.paths['db/migrate'].existent.each do |path|
