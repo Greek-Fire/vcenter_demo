@@ -1,2 +1,6 @@
-<% title _('Vcenters') %>
-<%= render :partial => 'list' %>
+<% title _("Vcenters") %>
+<% title_actions new_link(_("Add Vcenter")), help_button %>
+
+<%= render 'list' %>
+
+<%= will_paginate_with_info @vcenters %>
