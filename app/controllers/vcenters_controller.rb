@@ -39,5 +39,16 @@ module ForemanVcenterDemo
 
       def edit; end
       def show; end
+
+
+    private
+
+    def controller_permission
+      'vcenters'
+    end
+
+    def resource_base
+      Vcenter.authorized(controller_permission, Vcenter)
+    end
   end
 end
